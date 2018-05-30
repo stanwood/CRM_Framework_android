@@ -1,0 +1,45 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+}
+apply plugin: 'com.android.application'
+
+
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "stanwood.framework.crm.crmframework"
+        minSdkVersion 23
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:27.0.2'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.google.firebase:firebase-messaging:17.0.0'
+
+    implementation project(':library')
+
+    implementation 'com.github.stanwood.Analytics_Framework_android:stanwoodanalytics:1.2.6'
+    implementation 'com.github.stanwood.Analytics_Framework_android:gatrackingprovider:1.2.6'
+    implementation "com.github.stanwood.Analytics_Framework_android:fabrictrackingprovider:1.2.6"
+    debugImplementation 'com.github.stanwood.Analytics_Framework_android:testfairytrackingprovider:1.2.6'
+    implementation "com.github.stanwood.Analytics_Framework_android:firebasetrackingprovider:1.2.6"
+    releaseImplementation 'com.github.stanwood.Analytics_Framework_android:testfairytrackingprovider-noop:1.2.6'
+
+}
+
+
+apply plugin: 'com.google.gms.google-services'

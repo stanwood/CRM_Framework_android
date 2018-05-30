@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "656397977775",
+    "firebase_url": "https://notificationtest-f822e.firebaseio.com",
+    "project_id": "notificationtest-f822e",
+    "storage_bucket": "notificationtest-f822e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:656397977775:android:bac5244bc0df5347",
+        "android_client_info": {
+          "package_name": "stanwood.framework.crm.crmframework"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "656397977775-eemag95nol0ejt4arblge3b6k9snvppr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "stanwood.framework.crm.crmframework",
+            "certificate_hash": "d7feafb5258ade1f64460404844428c64e9c7b80"
+          }
+        },
+        {
+          "client_id": "656397977775-n76e0vkk7fupsvfvmegp181i55177k8r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8K9hkEp0jHXFfg9a9lGY_K6UNTUf3Cr8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "656397977775-n76e0vkk7fupsvfvmegp181i55177k8r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
