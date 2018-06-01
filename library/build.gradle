@@ -36,7 +36,7 @@ task sourcesJar(type: Jar) {
 
 task javadoc(type: Javadoc) {
     failOnError  false
-    source = android.sourceSets.main.java.sourceFiles
+    source = android.sourceSets.main.java.srcDirs
     configurations.implementation.setCanBeResolved(true)
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
     classpath += configurations.implementation
