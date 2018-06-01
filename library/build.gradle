@@ -22,12 +22,10 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
+    implementation 'com.android.support:support-annotations:27.1.1'
     implementation 'com.android.support:appcompat-v7:27.0.2'
     implementation 'com.google.firebase:firebase-messaging:17.0.0'
-
-
-    implementation 'com.github.stanwood.Analytics_Framework_android:stanwoodanalytics:1.2.6'
+    implementation 'com.github.stanwood.Analytics_Framework_android:stanwoodanalytics:1.2.7'
 }
 
 // build a jar with source files
@@ -38,9 +36,10 @@ task sourcesJar(type: Jar) {
 
 task javadoc(type: Javadoc) {
     failOnError  false
-    source = android.sourceSets.main.java.sourceFiles
+    source = android.sourceSets.main.java.srcDirs
+    configurations.implementation.setCanBeResolved(true)
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-    classpath += configurations.compile
+    classpath += configurations.implementation
 }
 
 // build a jar with javadoc
