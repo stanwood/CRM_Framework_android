@@ -11,7 +11,7 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "stanwood.framework.crm.crmframework"
-        minSdkVersion 23
+        minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -32,12 +32,12 @@ dependencies {
 
     implementation project(':library')
 
-    implementation 'com.github.stanwood.Analytics_Framework_android:stanwoodanalytics:1.2.6'
-    implementation 'com.github.stanwood.Analytics_Framework_android:gatrackingprovider:1.2.6'
-    implementation "com.github.stanwood.Analytics_Framework_android:fabrictrackingprovider:1.2.6"
-    debugImplementation 'com.github.stanwood.Analytics_Framework_android:testfairytrackingprovider:1.2.6'
-    implementation "com.github.stanwood.Analytics_Framework_android:firebasetrackingprovider:1.2.6"
-    releaseImplementation 'com.github.stanwood.Analytics_Framework_android:testfairytrackingprovider-noop:1.2.6'
+    implementation 'com.github.stanwood.Analytics_Framework_android:stanwoodanalytics:1.2.7'
+    implementation 'com.github.stanwood.Analytics_Framework_android:gatrackingprovider:1.2.7'
+    implementation "com.github.stanwood.Analytics_Framework_android:fabrictrackingprovider:1.2.7"
+    debugImplementation 'com.github.stanwood.Analytics_Framework_android:testfairytrackingprovider:1.2.7'
+    implementation "com.github.stanwood.Analytics_Framework_android:firebasetrackingprovider:1.2.7"
+    releaseImplementation 'com.github.stanwood.Analytics_Framework_android:testfairytrackingprovider-noop:1.2.7'
 
 }
 
