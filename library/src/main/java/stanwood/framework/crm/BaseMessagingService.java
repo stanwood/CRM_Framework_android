@@ -71,9 +71,15 @@ public abstract class BaseMessagingService extends FirebaseMessagingService {
                 instance.setNotificationData(title, message, bigMessage, params, messageId);
                 instance.createNotification();
             }
-        } else {
-            //TODO remove when api starts to send pushes with "data" object
-            instance.setNotificationData("Title", "message", null, null, 1);
+        } else if (remoteMessage.getNotification() != null) {
+            RemoteMessage.Notification notification = remoteMessage.getNotification();
+            Map<String, String> params = null;
+
+            if (notification.getLink() != null) {
+                params = UrlUtils.getQueryMap(notification.getLink().toString());
+            }
+
+            instance.setNotificationData(notification.getTitle(), notification.getBody(), null, params, 1);
             instance.createNotification();
         }
     }
