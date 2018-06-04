@@ -65,7 +65,7 @@ public abstract class BaseNotificationHandler {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(application.getString(R.string.default_notification_channel_id),
                     application.getString(R.string.default_notification_channel_description),
-                    NotificationManager.IMPORTANCE_MAX);
+                    NotificationManager.IMPORTANCE_HIGH);
             if (notificationManager != null) {
                 notificationManager.createNotificationChannel(channel);
             }
@@ -102,7 +102,7 @@ public abstract class BaseNotificationHandler {
     /**
      * Method responsible for notifying notificationManager about new push message
      *
-     * @param notificationManager
+     * @param notificationManager notification handler
      * @param builder             notification builder with defined push notifications
      */
     protected void sendNotification(NotificationManager notificationManager, NotificationCompat.Builder builder) {
