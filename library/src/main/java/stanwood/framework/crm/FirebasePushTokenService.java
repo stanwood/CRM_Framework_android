@@ -31,7 +31,6 @@ public class FirebasePushTokenService extends FirebaseInstanceIdService {
             throw new IllegalStateException("Make sure you initialize CRM library in your application Crm.init()");
         }
 
-
         instance.getBaseAnalyticsTracker().trackEvent(TrackerParams.builder(TrackingEvent.IDENTIFY_USER)
                 .addCustomProperty(TrackingKey.PUSH_TOKEN, token)
                 .build());
