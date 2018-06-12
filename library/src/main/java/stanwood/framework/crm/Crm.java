@@ -13,7 +13,7 @@ import android.util.Log;
 
 import java.util.HashMap;
 
-import io.stanwood.framework.analytics.BaseAnalyticsTracker;
+import io.stanwood.framework.analytics.generic.AnalyticsTracker;
 import stanwood.framework.crm.ui.InAppDialogFragment;
 import stanwood.framework.crm.utils.PreferencesHelper;
 
@@ -24,7 +24,7 @@ import stanwood.framework.crm.utils.PreferencesHelper;
 public class Crm {
 
     private static Crm instance;
-    private final BaseAnalyticsTracker baseAnalyticsTracker;
+    private final AnalyticsTracker analyticsTracker;
     private final PreferencesHelper preferencesHelper;
     private final Application application;
 
@@ -32,13 +32,13 @@ public class Crm {
 
     private static final String TAG = "CRM";
 
-    private Crm(@NonNull Application application, @NonNull BaseAnalyticsTracker baseAnalyticsTracker) {
-        this.baseAnalyticsTracker = baseAnalyticsTracker;
+    private Crm(@NonNull Application application, @NonNull AnalyticsTracker baseAnalyticsTracker) {
+        this.analyticsTracker = baseAnalyticsTracker;
         this.application = application;
         this.preferencesHelper = new PreferencesHelper(application);
     }
 
-    public static void init(@NonNull Application application, @NonNull BaseAnalyticsTracker baseAnalyticsTracker) {
+    public static void init(@NonNull Application application, @NonNull AnalyticsTracker baseAnalyticsTracker) {
         instance = new Crm(application, baseAnalyticsTracker);
     }
 
@@ -128,7 +128,7 @@ public class Crm {
         }
     }
 
-    BaseAnalyticsTracker getBaseAnalyticsTracker() {
-        return baseAnalyticsTracker;
+    AnalyticsTracker getAnalyticsTracker() {
+        return analyticsTracker;
     }
 }
