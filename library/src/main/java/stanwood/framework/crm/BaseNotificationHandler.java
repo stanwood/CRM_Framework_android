@@ -92,7 +92,7 @@ public abstract class BaseNotificationHandler {
 
         return new NotificationCompat.Builder(application, application.getString(R.string.default_notification_channel_id))
                 .setDefaults(Notification.DEFAULT_ALL)
-                .setSmallIcon(R.mipmap.crm_notification_icon)
+                .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(title)
                 .setContentText(message)
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
