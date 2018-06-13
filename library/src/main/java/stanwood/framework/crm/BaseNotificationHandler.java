@@ -30,23 +30,26 @@ public abstract class BaseNotificationHandler {
     private String message;
     private String bigMessage;
     private Map<String, String> params;
+    private String link;
 
     private Application application;
 
     private BaseAnalyticsTracker baseAnalyticsTracker;
     private int messageId;
 
+
     public BaseNotificationHandler(Application application, BaseAnalyticsTracker baseAnalyticsTracker) {
         this.application = application;
         this.baseAnalyticsTracker = baseAnalyticsTracker;
     }
 
-    public void setNotificationData(String title, String message, String bigMessage, Map<String, String> params, int messageId) {
+    public void setNotificationData(String title, String message, String bigMessage, Map<String, String> params, int messageId, String link) {
         this.title = title;
         this.message = message;
         this.bigMessage = bigMessage;
         this.params = params;
         this.messageId = messageId;
+        this.link = link;
     }
 
     /**
@@ -89,7 +92,7 @@ public abstract class BaseNotificationHandler {
 
         return new NotificationCompat.Builder(application, application.getString(R.string.default_notification_channel_id))
                 .setDefaults(Notification.DEFAULT_ALL)
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(R.mipmap.crm_notification_icon)
                 .setContentTitle(title)
                 .setContentText(message)
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
@@ -153,6 +156,15 @@ public abstract class BaseNotificationHandler {
      */
     public Map<String, String> getParams() {
         return params;
+    }
+
+    /**
+     * Method responsible for returning enitre unparsed deeplink
+     *
+     * @return application
+     */
+    public String getLink(){
+        return link;
     }
 
     /**

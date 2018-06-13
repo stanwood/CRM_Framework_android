@@ -68,18 +68,19 @@ public abstract class BaseMessagingService extends FirebaseMessagingService {
                 }
 
                 Map<String, String> params = UrlUtils.getQueryMap(link);
-                instance.setNotificationData(title, message, bigMessage, params, messageId);
+                instance.setNotificationData(title, message, bigMessage, params, messageId, link);
                 instance.createNotification();
             }
         } else if (remoteMessage.getNotification() != null) {
             RemoteMessage.Notification notification = remoteMessage.getNotification();
             Map<String, String> params = null;
-
+            String link = null;
             if (notification.getLink() != null) {
-                params = UrlUtils.getQueryMap(notification.getLink().toString());
+                link = notification.getLink().toString();
+                params = UrlUtils.getQueryMap(link);
             }
 
-            instance.setNotificationData(notification.getTitle(), notification.getBody(), null, params, 1);
+            instance.setNotificationData(notification.getTitle(), notification.getBody(), null, params, 1, link);
             instance.createNotification();
         }
     }
