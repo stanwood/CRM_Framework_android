@@ -30,23 +30,26 @@ public abstract class BaseNotificationHandler {
     private String message;
     private String bigMessage;
     private Map<String, String> params;
+    private String link;
 
     private Application application;
 
     private BaseAnalyticsTracker baseAnalyticsTracker;
     private int messageId;
 
+
     public BaseNotificationHandler(Application application, BaseAnalyticsTracker baseAnalyticsTracker) {
         this.application = application;
         this.baseAnalyticsTracker = baseAnalyticsTracker;
     }
 
-    public void setNotificationData(String title, String message, String bigMessage, Map<String, String> params, int messageId) {
+    public void setNotificationData(String title, String message, String bigMessage, Map<String, String> params, int messageId, String link) {
         this.title = title;
         this.message = message;
         this.bigMessage = bigMessage;
         this.params = params;
         this.messageId = messageId;
+        this.link = link;
     }
 
     /**
@@ -153,6 +156,15 @@ public abstract class BaseNotificationHandler {
      */
     public Map<String, String> getParams() {
         return params;
+    }
+
+    /**
+     * Method responsible for returning enitre unparsed deeplink
+     *
+     * @return application
+     */
+    public String getLink(){
+        return link;
     }
 
     /**
