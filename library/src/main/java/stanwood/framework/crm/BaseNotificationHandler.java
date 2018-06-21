@@ -28,6 +28,9 @@ import android.media.RingtoneManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
+import android.text.TextUtils;
+
+import com.google.firebase.messaging.RemoteMessage;
 
 import java.util.Map;
 
@@ -47,11 +50,13 @@ public abstract class BaseNotificationHandler {
     private String bigMessage;
     private Map<String, String> params;
     private String link;
+    private int messageId;
+    private RemoteMessage remoteMessage;
 
     private Application application;
 
     private BaseAnalyticsTracker baseAnalyticsTracker;
-    private int messageId;
+
 
 
     public BaseNotificationHandler(Application application, BaseAnalyticsTracker baseAnalyticsTracker) {
@@ -63,6 +68,14 @@ public abstract class BaseNotificationHandler {
         this.title = title;
         this.message = message;
         this.bigMessage = bigMessage;
+        this.params = params;
+        this.messageId = messageId;
+        this.link = link;
+    }
+
+    public void setNotificationData(String title, String message, Map<String, String> params, int messageId, String link) {
+        this.title = title;
+        this.message = message;
         this.params = params;
         this.messageId = messageId;
         this.link = link;
@@ -145,6 +158,14 @@ public abstract class BaseNotificationHandler {
     }
 
     /**
+     * Method for setting title of the push notifications.
+     * Title is assigned in @{@link BaseMessagingService}
+     */
+    public void setTitle(String title){
+        this.title = title;
+    }
+
+    /**
      * Method for obtaining message of the push notifications.
      * Message is assigned in @{@link BaseMessagingService}
      *
@@ -152,6 +173,14 @@ public abstract class BaseNotificationHandler {
      */
     public String getMessage() {
         return message;
+    }
+
+    /**
+     * Method for setting message of the push notifications.
+     * Message is assigned in @{@link BaseMessagingService}
+     */
+    public void setMessage(String message){
+        this.message = message;
     }
 
     /**
@@ -175,12 +204,45 @@ public abstract class BaseNotificationHandler {
     }
 
     /**
+     * Method for seting deeplink parameters of the push notifications.
+     * Params are obtained from @{@link BaseMessagingService}
+     *
+     */
+    public void setParams(Map<String, String> params) {
+        this.params = params;
+    }
+
+    /**
      * Method responsible for returning enitre unparsed deeplink
      *
      * @return application
      */
     public String getLink(){
         return link;
+    }
+
+    /**
+     * Method responsible for seting enitre unparsed deeplink
+     *
+     */
+    public void setLink(String link){
+        this.link = link;
+    }
+
+    /**
+     * Method responsible for returning notification id
+     ** @return messageId
+     */
+    public int getMessageId() {
+        return messageId;
+    }
+
+    /**
+     * Method responsible for seting notification id
+     *
+     */
+    public void setMessageId(int messageId) {
+        this.messageId = messageId;
     }
 
     /**
@@ -192,4 +254,30 @@ public abstract class BaseNotificationHandler {
         return application;
     }
 
+
+    /**
+     * Checks if notification data is valid.
+     * @return boolean
+     */
+    public boolean isDataValid(){
+        return !TextUtils.isEmpty(title);
+    }
+
+    /**
+     * Method responsible for obtaining remote message
+     *
+     * @return RemoteMessage
+     */
+    public RemoteMessage getRemoteMessage() {
+        return remoteMessage;
+    }
+
+
+    /**
+     * Method responsible for setting remote message
+     *
+     */
+    public void setRemoteMessage(RemoteMessage remoteMessage) {
+        this.remoteMessage = remoteMessage;
+    }
 }
