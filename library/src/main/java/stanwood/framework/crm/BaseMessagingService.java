@@ -1,3 +1,19 @@
+/*
+ * Copyright 2018 stanwood Gmbh
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package stanwood.framework.crm;
 
 
@@ -36,6 +52,7 @@ public abstract class BaseMessagingService extends FirebaseMessagingService {
         if (remoteMessage.getData().size() > 0) {
             Log.d(TAG, "Message data payload: " + remoteMessage.getData());
 
+
             String title = remoteMessage.getData().get(this.getString(R.string.title_key));
             String message = remoteMessage.getData().get(this.getString(R.string.message_key));
             String bigMessage = remoteMessage.getData().get(this.getString(R.string.big_message_key));
@@ -59,19 +76,13 @@ public abstract class BaseMessagingService extends FirebaseMessagingService {
             } else {
                 //Handle Notification part
                 int messageId = TextUtils.isEmpty(messageIdText) ? 1 : Integer.valueOf(messageIdText);
-                if (TextUtils.isEmpty(title)) {
-                    throw new IllegalArgumentException("Title can not be empty. Remember to override title_key from crm.xml");
-                }
-
-                if (TextUtils.isEmpty(message)) {
-                    throw new IllegalArgumentException("Message can not be empty. Remember to override message_key from crm.xml");
-                }
-
                 Map<String, String> params = UrlUtils.getQueryMap(link);
                 instance.setNotificationData(title, message, bigMessage, params, messageId, link);
-                instance.createNotification();
             }
-        } else if (remoteMessage.getNotification() != null) {
+        }
+
+        //Handle notification part if any
+        if (remoteMessage.getNotification() != null) {
             RemoteMessage.Notification notification = remoteMessage.getNotification();
             Map<String, String> params = null;
             String link = null;
@@ -80,7 +91,29 @@ public abstract class BaseMessagingService extends FirebaseMessagingService {
                 params = UrlUtils.getQueryMap(link);
             }
 
-            instance.setNotificationData(notification.getTitle(), notification.getBody(), null, params, 1, link);
+            if (!TextUtils.isEmpty(notification.getTitle())) {
+                instance.setTitle(notification.getTitle());
+            }
+
+            if (!TextUtils.isEmpty(notification.getBody())) {
+                instance.setMessage(notification.getBody());
+            }
+
+            if (!TextUtils.isEmpty(link)) {
+                instance.setLink(link);
+            }
+
+            if (params != null && !params.isEmpty()) {
+                instance.setParams(params);
+            }
+
+            if (instance.getMessageId() <= 0) {
+                instance.setMessageId(1);
+            }
+        }
+
+        if (instance.isDataValid()) {
+            instance.setRemoteMessage(remoteMessage);
             instance.createNotification();
         }
     }
