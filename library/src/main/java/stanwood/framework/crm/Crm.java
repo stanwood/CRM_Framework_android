@@ -43,6 +43,7 @@ public class Crm {
     private final AnalyticsTracker analyticsTracker;
     private final PreferencesHelper preferencesHelper;
     private final Application application;
+    private final ApiService apiService;
 
     HashMap<String, Class<? extends InAppDialogFragment>> dialogDesigns = new HashMap<>();
 
@@ -52,6 +53,7 @@ public class Crm {
         this.analyticsTracker = baseAnalyticsTracker;
         this.application = application;
         this.preferencesHelper = new PreferencesHelper(application);
+        this.apiService = new ApiService(this, application);
     }
 
     public static void init(@NonNull Application application, @NonNull AnalyticsTracker baseAnalyticsTracker) {
@@ -64,6 +66,44 @@ public class Crm {
     public static Crm getInstance() {
         return instance;
     }
+
+    void savePushToken(String token) {
+        preferencesHelper.savePushToken(token);
+        sendUpdate();
+    }
+
+    String getPushToken() {
+        return  preferencesHelper.getPushToken();
+    }
+
+    String getUserId(){
+        return  preferencesHelper.getUserId();
+    }
+
+    public void saveUserId(String userId) {
+        preferencesHelper.saveUserId(userId);
+        sendUpdate();
+    }
+
+    private void sendUpdate() {
+        String pushToken = getPushToken();
+        String userId = getUserId();
+
+        if (pushToken != null && userId != null) {
+            apiService.updateToken(pushToken, userId);
+        }
+    }
+
+    void setPushTokenSent(boolean sent){
+        preferencesHelper.setPushTokenSent(sent);
+    }
+
+    boolean wasPushTokenSent(){
+       return preferencesHelper.wasPushTokenSent();
+    }
+
+
+
 
     void saveInApp(String targetScreenName, String link) {
         preferencesHelper.saveInApp(targetScreenName, link);
