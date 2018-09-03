@@ -24,9 +24,9 @@ public class NetworkService extends BroadcastReceiver {
     }
 
     private void registerReceiver(Context appContext) {
-        final IntentFilter mIFNetwork = new IntentFilter();
-        mIFNetwork.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
-        appContext.registerReceiver(this, mIFNetwork);
+        final IntentFilter intentFilterNetwork = new IntentFilter();
+        intentFilterNetwork.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        appContext.registerReceiver(this, intentFilterNetwork);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class NetworkService extends BroadcastReceiver {
     }
 
     private void checkNetworkState() {
-        if(isConnectedNow()){
+        if (isConnectedNow()) {
             service.retry();
         }
     }

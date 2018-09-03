@@ -15,9 +15,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import stanwood.framework.crm.utils.NetworkService;
 
-
 public class ApiService {
-
 
     private final Application application;
     private final CrmApiInterface crmApiInterface;
@@ -44,7 +42,6 @@ public class ApiService {
                     new HttpLoggingInterceptor()
                             .setLevel(HttpLoggingInterceptor.Level.BODY));
         }
-
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(application.getString(R.string.crm_base_api_url))

@@ -73,11 +73,11 @@ public class Crm {
     }
 
     String getPushToken() {
-        return  preferencesHelper.getPushToken();
+        return preferencesHelper.getPushToken();
     }
 
-    String getUserId(){
-        return  preferencesHelper.getUserId();
+    String getUserId() {
+        return preferencesHelper.getUserId();
     }
 
     public void saveUserId(String userId) {
@@ -94,15 +94,13 @@ public class Crm {
         }
     }
 
-    void setPushTokenSent(boolean sent){
+    void setPushTokenSent(boolean sent) {
         preferencesHelper.setPushTokenSent(sent);
     }
 
-    boolean wasPushTokenSent(){
-       return preferencesHelper.wasPushTokenSent();
+    boolean wasPushTokenSent() {
+        return preferencesHelper.wasPushTokenSent();
     }
-
-
 
 
     void saveInApp(String targetScreenName, String link) {

@@ -19,9 +19,6 @@ package stanwood.framework.crm.app;
 
 import android.app.Application;
 
-import com.crashlytics.android.Crashlytics;
-
-import io.fabric.sdk.android.Fabric;
 import stanwood.framework.crm.Crm;
 import stanwood.framework.crm.app.notification.CustomInAppDialogFragment;
 
@@ -31,8 +28,6 @@ public class CrmApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
-        Fabric.with(this, new Crashlytics());
 
         //Initialization of tracking library
         SimpleAppTracker.init(this);
