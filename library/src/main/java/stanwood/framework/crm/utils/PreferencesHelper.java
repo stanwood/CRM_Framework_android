@@ -24,7 +24,10 @@ import android.content.SharedPreferences;
 public class PreferencesHelper {
 
 
-    public static final String PREF_FILE_NAME = "android_crm_pref_file";
+    private static final String PREF_FILE_NAME = "android_crm_pref_file";
+    private static final String PUSH_TOKEN_KEY = "push_token_key";
+    private static final String USER_ID_KEY = "user_id_key";
+    private static final String REQUEST_SENT_KEY = "request_sent_key";
     private final SharedPreferences generalPreferences;
     private final Application application;
 
@@ -41,4 +44,29 @@ public class PreferencesHelper {
     public String getInApp(String key) {
         return generalPreferences.getString(key, null);
     }
+
+    public void savePushToken(String token){
+        generalPreferences.edit().putString(PUSH_TOKEN_KEY, token).apply();
+    }
+
+    public String getPushToken(){
+        return generalPreferences.getString(PUSH_TOKEN_KEY, null);
+    }
+
+    public void saveUserId(String userId){
+        generalPreferences.edit().putString(USER_ID_KEY, userId).apply();
+    }
+
+    public String getUserId(){
+        return generalPreferences.getString(USER_ID_KEY, null);
+    }
+
+    public void setPushTokenSent(boolean wasSent){
+        generalPreferences.edit().putBoolean(REQUEST_SENT_KEY, wasSent).apply();
+    }
+
+    public boolean wasPushTokenSent(){
+        return generalPreferences.getBoolean(REQUEST_SENT_KEY, false);
+    }
+
 }

@@ -117,4 +117,16 @@ public abstract class BaseMessagingService extends FirebaseMessagingService {
             instance.createNotification();
         }
     }
+
+    @Override
+    public void onNewToken(String token) {
+        super.onNewToken(token);
+        Crm instance = Crm.getInstance();
+
+        if (instance == null) {
+            throw new IllegalStateException("Make sure you initialize CRM library in your application Crm.init()");
+        }
+
+        instance.savePushToken(token);
+    }
 }
