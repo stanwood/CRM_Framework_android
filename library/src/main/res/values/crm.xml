@@ -20,4 +20,10 @@
     <string name="message_type_key">type</string>
     <!--Target Screen on which the inApp message should be displayed -->
     <string name="target_screen">target_screen</string>
+    <!--Jira project name etc. CRM-->
+    <string name="jira_project_name">CRM</string>
+    <!-- CRM API token -->
+    <string name="crm_api_token">token</string>
+    <!-- CRM API url -->
+    <string name="crm_base_api_url">url</string>
 </resources>
