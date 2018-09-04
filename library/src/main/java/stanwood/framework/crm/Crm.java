@@ -90,7 +90,7 @@ public class Crm {
         String userId = getUserId();
 
         if (pushToken != null && userId != null) {
-            apiService.updateToken(pushToken, userId);
+            apiService.sendPushToken(pushToken, userId);
         }
     }
 

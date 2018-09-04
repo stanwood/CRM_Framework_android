@@ -54,7 +54,7 @@ public class ApiService {
     }
 
 
-    void updateToken(String pushToken, String userId) {
+    void sendPushToken(String pushToken, String userId) {
         HashMap<String, Object> params = new HashMap<>();
         params.put("user_id", userId);
         params.put("token", pushToken);
@@ -75,13 +75,13 @@ public class ApiService {
         });
     }
 
-    public void retry() {
+    public void retrySendPushToken() {
         if (!crm.wasPushTokenSent()) {
             String pushToken = crm.getPushToken();
             String userId = crm.getUserId();
 
             if (pushToken != null && userId != null) {
-                updateToken(pushToken, userId);
+                sendPushToken(pushToken, userId);
             }
         }
     }

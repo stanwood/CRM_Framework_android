@@ -36,7 +36,7 @@ public class NetworkService extends BroadcastReceiver {
 
     private void checkNetworkState() {
         if (isConnectedNow()) {
-            service.retry();
+            service.retrySendPushToken();
         }
     }
 
