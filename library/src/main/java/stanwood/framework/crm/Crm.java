@@ -55,7 +55,7 @@ public class Crm {
         this.application = application;
         this.preferencesHelper = new PreferencesHelper(application);
 
-        if (TextUtils.isEmpty(application.getString(R.string.crm_base_api_url))) {
+        if (!TextUtils.isEmpty(application.getString(R.string.crm_base_api_url))) {
             this.apiService = new ApiService(this, application);
         } else {
             this.apiService = null;
