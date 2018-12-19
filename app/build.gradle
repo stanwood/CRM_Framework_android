@@ -31,12 +31,12 @@ dependencies {
     implementation 'com.android.support:support-v4:28.0.0'
     implementation project(':library')
 
-    implementation 'com.github.stanwood.Analytics_Framework_android:stanwoodanalytics:1.4.1'
-    implementation 'com.github.stanwood.Analytics_Framework_android:gatrackingprovider:1.4.1'
-    implementation 'com.github.stanwood.Analytics_Framework_android:fabrictrackingprovider:1.4.1'
-    debugImplementation 'com.github.stanwood.Analytics_Framework_android:testfairytrackingprovider:1.4.1'
-    implementation 'com.github.stanwood.Analytics_Framework_android:firebasetrackingprovider:1.4.1'
-    releaseImplementation 'com.github.stanwood.Analytics_Framework_android:testfairytrackingprovider-noop:1.4.1'
+    implementation 'com.github.stanwood.Analytics_Framework_android:stanwoodanalytics:1.5.0'
+    implementation 'com.github.stanwood.Analytics_Framework_android:gatrackingprovider:1.5.0'
+    implementation 'com.github.stanwood.Analytics_Framework_android:fabrictrackingprovider:1.5.0'
+    debugImplementation 'com.github.stanwood.Analytics_Framework_android:testfairytrackingprovider:1.5.0'
+    implementation 'com.github.stanwood.Analytics_Framework_android:firebasetrackingprovider:1.5.0'
+    releaseImplementation 'com.github.stanwood.Analytics_Framework_android:testfairytrackingprovider-noop:1.5.0'
 
 }
 

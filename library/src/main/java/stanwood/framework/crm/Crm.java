@@ -43,7 +43,8 @@ public class Crm {
     private final AnalyticsTracker analyticsTracker;
     private final PreferencesHelper preferencesHelper;
     private final Application application;
-    private final ApiService apiService;
+    private final @Nullable
+    ApiService apiService;
 
     HashMap<String, Class<? extends InAppDialogFragment>> dialogDesigns = new HashMap<>();
 
@@ -53,7 +54,12 @@ public class Crm {
         this.analyticsTracker = baseAnalyticsTracker;
         this.application = application;
         this.preferencesHelper = new PreferencesHelper(application);
-        this.apiService = new ApiService(this, application);
+
+        if (!TextUtils.isEmpty(application.getString(R.string.crm_base_api_url))) {
+            this.apiService = new ApiService(this, application);
+        } else {
+            this.apiService = null;
+        }
     }
 
     public static void init(@NonNull Application application, @NonNull AnalyticsTracker baseAnalyticsTracker) {
@@ -89,7 +95,7 @@ public class Crm {
         String pushToken = getPushToken();
         String userId = getUserId();
 
-        if (pushToken != null && userId != null) {
+        if (pushToken != null && userId != null && apiService != null) {
             apiService.sendPushToken(pushToken, userId);
         }
     }
