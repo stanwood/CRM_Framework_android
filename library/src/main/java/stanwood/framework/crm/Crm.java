@@ -148,11 +148,12 @@ public class Crm {
      * @param dialogFragment
      */
     public void displayInAppIfAny(@Nullable Activity activity, @NonNull String screenName, @Nullable InAppDialogFragment dialogFragment) {
-        //TODO remove this only needed for testing
-        String link = "https://www.google.pl";//getInApp(screenName);
-        if (!TextUtils.isEmpty(link)) {
-            Log.v(TAG, "Has inapp for " + screenName + " : " + link);
+        String link = getInApp(screenName);
+        if (TextUtils.isEmpty(link)) {
+            return;
+
         }
+        Log.v(TAG, "Has inapp for " + screenName + " : " + link);
 
         if (activity != null && !activity.isFinishing()) {
             FragmentTransaction ft = activity.getFragmentManager().beginTransaction();
